@@ -1,0 +1,8 @@
+{
+  "name": "david-portfolio",
+  "version": "1.0.0",
+  "description": "David Nwoko's Portfolio",
+  "scripts": {
+    "build": "node build.js"
+  }
+}

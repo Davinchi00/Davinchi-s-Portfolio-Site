@@ -1,8 +1,8 @@
 (function(){
   // ===== SUPABASE CONFIGURATION =====
-  // TODO: Replace with your Supabase credentials from https://app.supabase.com/
-  const SUPABASE_URL = 'https://lerzzeivtqjemzalqshp.supabase.co'; // e.g., https://xxxxx.supabase.co
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxlcnp6ZWl2dHFqZW16YWxxc2hwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExMzI3NjQsImV4cCI6MjA4NjcwODc2NH0._8tVwc8e0-X9BJ67vTblwicn5X8-Fjr5PvH2rPp38QQ'; // Found in Settings → API
+  // Configuration loaded from config.js (generated from environment variables)
+  const SUPABASE_URL = CONFIG.SUPABASE_URL;
+  const SUPABASE_ANON_KEY = CONFIG.SUPABASE_ANON_KEY;
   
   // Initialize Supabase client
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
