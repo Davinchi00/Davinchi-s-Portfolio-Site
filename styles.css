@@ -36,6 +36,12 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overfl
 .loader-text{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,5rem);font-weight:300;letter-spacing:.3em;color:var(--gold);animation:pulse 1.5s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 
+/* ===== CUSTOM CURSOR ===== */
+/* Small gold dot cursor */
+.cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
+/* Outer ring that follows cursor with slight delay */
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.6;}
+
 /* ===== NAVIGATION ===== */
 /* Fixed top navigation bar with blur backdrop */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:background .4s;}
