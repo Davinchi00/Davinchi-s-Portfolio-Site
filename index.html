@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Ugochukwu Nwoko — Creative Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Supabase Client Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- Custom cursor elements -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Loading screen shown on page load -->
+<div id="loader"><div class="loader-text">DAVID.N</div></div>
+
+<!-- Toast notification for user feedback -->
+<div id="toast"></div>
+
+<!-- ===== PASSWORD MODAL ===== -->
+<!-- Modal for password protection before allowing uploads -->
+<div class="pw-overlay" id="pwModal">
+  <div class="pw-box">
+    <button class="pw-close" id="pwClose">✕</button>
+    <h4>Admin Access</h4>
+    <p>Enter password to upload images</p>
+    <input type="password" class="pw-input" id="pwInput" placeholder="••••••••" maxlength="20">
+    <button class="pw-btn" id="pwSubmit">Unlock →</button>
+  </div>
+</div>
+
+<!-- ===== IMAGE VIEW MODAL ===== -->
+<!-- Full-screen image viewer for portfolio items -->
+<div class="image-view-overlay" id="imageViewModal">
+  <div class="image-view-container">
+    <button class="image-view-close" id="imageViewClose">✕</button>
+    <img id="imageViewImg" src="" alt="Portfolio image">
+  </div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <a href="#" class="nav-logo">D·N</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <!-- Dark/Light theme toggle -->
+    <div class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
+      <span class="theme-icon">🌙</span>
+      <div class="toggle-switch"></div>
+      <span class="theme-icon">☀️</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" id="home">
+  <!-- Hero background image -->
+  <div class="hero-bg-image" id="heroBgImage"></div>
+  <!-- Decorative SVG graffiti elements -->
+  <div class="graffiti-layer">
+    <svg width="360" height="210" style="top:8%;right:4%;" viewBox="0 0 360 210">
+      <text x="0" y="170" font-family="Syne,sans-serif" font-size="140" font-weight="800" fill="none" stroke="#c9a84c" stroke-width="2" letter-spacing="-6">ART</text>
+    </svg>
+    <svg width="110" height="110" style="bottom:18%;left:2%;" viewBox="0 0 110 110">
+      <circle cx="55" cy="55" r="46" fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-dasharray="9 6"/>
+      <circle cx="55" cy="55" r="26" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="55" cy="55" r="5" fill="#c9a84c" opacity="0.5"/>
+    </svg>
+    <svg width="220" height="90" style="bottom:6%;right:12%;" viewBox="0 0 220 90">
+      <path d="M10,65 Q65,8 115,58 Q165,98 210,35" fill="none" stroke="#c9a84c" stroke-width="3" stroke-linecap="round"/>
+      <path d="M15,70 Q70,13 120,63 Q170,103 215,40" fill="none" stroke="#c9a84c" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-label">Creative Designer &amp; Brand Strategist</div>
+      <h1 class="hero-title">David<br><em>Ugochukwu</em><br>Nwoko</h1>
+      <p class="hero-desc">Transforming brands through bold visual storytelling. Specialized in fintech, corporate identity, and digital design with 4+ years of professional experience.</p>
+      <a href="#portfolio" class="btn-primary">View My Work →</a>
+    </div>
+    <!-- Statistics showcase -->
+    <div class="hero-stats reveal">
+      <div><div class="stat-num">4+</div><div class="stat-label">Years Experience</div></div>
+      <div><div class="stat-num">100+</div><div class="stat-label">Projects Done</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-label">Happy Clients</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section class="about" id="about">
+  <!-- Decorative background elements -->
+  <div class="graffiti-layer">
+    <svg width="320" height="320" style="bottom:-60px;right:-10px;" viewBox="0 0 320 320">
+      <text x="-20" y="280" font-family="Cormorant Garamond,serif" font-size="240" font-weight="600" fill="none" stroke="#c9a84c" stroke-width="1.5" font-style="italic">D</text>
+    </svg>
+    <svg width="70" height="70" style="top:70px;right:220px;" viewBox="0 0 70 70">
+      <line x1="0" y1="35" x2="70" y2="35" stroke="#c9a84c" stroke-width="2"/>
+      <line x1="35" y1="0" x2="35" y2="70" stroke="#c9a84c" stroke-width="2"/>
+      <circle cx="35" cy="35" r="18" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="about-grid">
+    <!-- Profile photo with upload capability -->
+    <div class="about-photo reveal" id="aboutPhoto">
+      <div class="about-photo-placeholder" id="photoPlaceholder">D</div>
+      <div class="photo-upload-overlay" id="photoOverlay">
+        <div class="pu-icon">↑</div>
+        <span>Upload Photo</span>
+      </div>
+    </div>
+    <!-- About text content -->
+    <div class="about-text reveal reveal-delay-2">
+      <div class="section-header">
+        <span class="section-num">01 /</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <h3>"Design is how I tell stories without words"</h3>
+      <p>I'm David Ugochukwu Nwoko, a passionate graphic designer based in Abuja, Nigeria with over 4 years of hands-on experience crafting visual identities that leave lasting impressions.</p>
+      <p>From fintech startups to corporate brands, I bring a strategic yet artistic approach to every project — ensuring design not only looks exceptional but drives real business results.</p>
+      <p>I specialise in brand identity, print &amp; digital design, product packaging, and social media content creation. Currently serving as an IT Support Engineer at Systemspecs Holdings Limited, I combine creative design expertise with technical proficiency.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO SECTION ===== -->
+<section class="portfolio" id="portfolio">
+  <!-- Decorative elements -->
+  <div class="graffiti-layer">
+    <svg width="500" height="110" style="top:70px;right:0;" viewBox="0 0 500 110">
+      <text x="0" y="95" font-family="Syne,sans-serif" font-size="95" font-weight="800" fill="none" stroke="#c9a84c" stroke-width="1.5" letter-spacing="3">DAVINCHI</text>
+    </svg>
+    <svg width="150" height="150" style="bottom:240px;left:-20px;" viewBox="0 0 150 150">
+      <polygon points="75,8 138,138 12,138" fill="none" stroke="#c9a84c" stroke-width="2"/>
+      <polygon points="75,34 118,124 32,124" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="portfolio-inner">
+    <div class="section-header reveal">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Portfolio</h2>
+      <div class="section-line"></div>
+    </div>
+    <!-- Password protection notice -->
+    <p style="color:var(--text-faint);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:60px;margin-top:-50px;">
+      🔒 Hover any slot · Upload or View (password protected)
+    </p>
+
+    <!-- ===== LOGO DESIGN CATEGORY ===== -->
+    <!-- Grid of 10 logo slots (5 columns × 2 rows) -->
+    <div class="portfolio-category reveal">
+      <div class="category-title">Logo Design</div>
+      <div class="category-subtitle">Logos &amp; Wordmarks</div>
+      <div class="logofolio-wrap">
+        <div class="logofolio-info">
+          <div class="lf-tag">LOGOFOLIO</div>
+          <p class="lf-desc">Throughout my experience as a designer, I have created various logos for individuals, businesses, local startups, and corporate projects.</p>
+          <div class="lf-date">Date: 2021 – Present</div>
+        </div>
+        <!-- Logo grid container - populated by JavaScript -->
+        <div class="logofolio-grid" id="cat-logo"></div>
+      </div>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA CATEGORY ===== -->
+    <!-- Grid of 10 social media post slots (5 columns × 2 rows) with row navigation -->
+    <div class="portfolio-category reveal reveal-delay-1">
+      <div class="category-title">Social Media</div>
+      <div class="category-subtitle">Digital Content &amp; Social Graphics</div>
+      <div class="social-wrapper">
+        <!-- Social media grid container - populated by JavaScript -->
+        <div class="social-grid" id="cat-social"></div>
+        <!-- Row navigation arrows -->
+        <div class="row-nav">
+          <button class="row-nav-btn" id="socialPrevBtn">↑</button>
+          <button class="row-nav-btn" id="socialNextBtn">↓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BRANDING CATEGORY ===== -->
+    <!-- Three separate branding projects with mosaic layouts -->
+    <div class="portfolio-category reveal reveal-delay-2">
+      <div class="category-title">Branding</div>
+      <div class="category-subtitle">Brand Identity &amp; Visual Systems</div>
+      
+      <!-- Branding Project 1 -->
+      <div class="brand-project" id="brand1">
+        <div class="brand-info">
+          <div class="brand-label">Project 01</div>
+          <h3 class="brand-name">Full Branding</h3>
+          <p class="brand-desc">A complete brand identity project covering stationery, digital assets, app icons, and web presence.</p>
+          <div class="brand-date">Date: 2024</div>
+        </div>
+        <!-- 5 image slots in mosaic layout - populated by JavaScript -->
+        <div class="brand-mosaic" id="brand1-grid"></div>
+      </div>
+      
+      <!-- Branding Project 2 -->
+      <div class="brand-project" id="brand2" style="margin-top:40px;">
+        <div class="brand-info">
+          <div class="brand-label">Project 02</div>
+          <h3 class="brand-name">Visual Identity</h3>
+          <p class="brand-desc">Brand refresh and identity system — logo, colour palette, typography and brand guidelines.</p>
+          <div class="brand-date">Date: 2024</div>
+        </div>
+        <div class="brand-mosaic" id="brand2-grid"></div>
+      </div>
+      
+      <!-- Branding Project 3 -->
+      <div class="brand-project" id="brand3" style="margin-top:40px;">
+        <div class="brand-info">
+          <div class="brand-label">Project 03</div>
+          <h3 class="brand-name">Brand Campaign</h3>
+          <p class="brand-desc">End-to-end campaign including visual identity, motion assets, and event branding collateral.</p>
+          <div class="brand-date">Date: 2025</div>
+        </div>
+        <div class="brand-mosaic" id="brand3-grid"></div>
+      </div>
+    </div>
+
+    <!-- ===== PRODUCT PACKAGING CATEGORY ===== -->
+    <!-- Two packaging projects with mosaic layouts -->
+    <div class="portfolio-category reveal reveal-delay-3">
+      <div class="category-title">Product Packaging</div>
+      <div class="category-subtitle">Packaging &amp; Label Design</div>
+      
+      <!-- Packaging Project 1 -->
+      <div class="packaging-project" id="package1">
+        <div class="packaging-info">
+          <div class="packaging-label">Project 01</div>
+          <h3 class="packaging-name">Premium Packaging</h3>
+          <p class="packaging-desc">Luxury product packaging design featuring elegant box design, label artwork, and brand cohesion.</p>
+          <div class="packaging-date">Date: 2024</div>
+        </div>
+        <!-- 5 image slots - populated by JavaScript -->
+        <div class="packaging-mosaic" id="package1-grid"></div>
+      </div>
+      
+      <!-- Packaging Project 2 -->
+      <div class="packaging-project" id="package2" style="margin-top:40px;">
+        <div class="packaging-info">
+          <div class="packaging-label">Project 02</div>
+          <h3 class="packaging-name">Retail Packaging</h3>
+          <p class="packaging-desc">Consumer product packaging with focus on shelf appeal, information hierarchy, and sustainable materials.</p>
+          <div class="packaging-date">Date: 2025</div>
+        </div>
+        <div class="packaging-mosaic" id="package2-grid"></div>
+      </div>
+    </div>
+
+    <!-- ===== CORPORATE STATIONERY CATEGORY ===== -->
+    <!-- Grid of 4 stationery items (2 large + 2 small) -->
+    <div class="portfolio-category reveal reveal-delay-4">
+      <div class="category-title">Corporate Stationery</div>
+      <div class="category-subtitle">Business Cards, Letterheads &amp; More</div>
+      <!-- Stationery grid container - populated by JavaScript -->
+      <div class="project-grid" id="cat-stationery"></div>
+    </div>
+
+    <!-- ===== FLYER DESIGN CATEGORY ===== -->
+    <!-- Grid of 10 flyer slots with poster proportions (5 columns × 2 rows) with row navigation -->
+    <div class="portfolio-category reveal reveal-delay-5">
+      <div class="category-title">Flyer Design</div>
+      <div class="category-subtitle">Event, Promo &amp; Marketing Flyers</div>
+      <div class="flyer-wrapper">
+        <!-- Flyer grid container - populated by JavaScript -->
+        <div class="flyer-grid" id="cat-flyer"></div>
+        <!-- Row navigation arrows -->
+        <div class="row-nav">
+          <button class="row-nav-btn" id="flyerPrevBtn">↑</button>
+          <button class="row-nav-btn" id="flyerNextBtn">↓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <!-- Contact information -->
+    <div class="contact-info reveal">
+      <div class="section-header">
+        <span class="section-num">03 /</span>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <h3>Let's create something remarkable</h3>
+      <div class="contact-item" style="margin-top:32px;">
+        <span class="contact-label">Email</span>
+        <span class="contact-val"><a href="mailto:nwokodavidugo@gmail.com" style="color:var(--text-muted);text-decoration:none;">nwokodavidugo@gmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-val">+234 902 440 6596</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Alternative</span>
+        <span class="contact-val">+234 807 764 8077</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-val">Abuja, Nigeria</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Specialties</span>
+        <span class="contact-val">Branding · Fintech · Print · Digital</span>
+      </div>
+    </div>
+    <!-- Contact form with FormSubmit integration -->
+    <form class="contact-form reveal reveal-delay-2" action="https://formsubmit.co/nwokodavidugo@gmail.com" method="POST">
+      <!-- FormSubmit Configuration -->
+      <input type="hidden" name="_subject" value="New Portfolio Contact from Website!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="text" name="_honey" style="display:none">
+      
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" name="name" placeholder="Full name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" name="message" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="cursor:none;padding:16px 36px;width:fit-content;">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo">David Ugochukwu Nwoko</div>
+  <div class="footer-copy">© 2026 · Davinchi Conceptz · All rights reserved</div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
