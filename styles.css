@@ -343,7 +343,10 @@ footer{padding:40px 48px;display:flex;align-items:center;justify-content:space-b
   .hero{padding:100px 20px 60px;}.hero-grid{grid-template-columns:1fr;gap:40px;}
   section{padding:80px 20px;}
   /* Stack about grid vertically */
-  .about-grid{grid-template-columns:1fr;}
+  .abHide custom cursor on mobile and restore default cursor */
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none;}
+  /* out-grid{grid-template-columns:1fr;}
   /* Reduce grid columns further */
   .logofolio-grid{grid-template-columns:repeat(3,1fr);}
   .social-grid{grid-template-columns:repeat(2,1fr);max-height:454px;}
