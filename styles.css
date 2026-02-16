@@ -24,12 +24,6 @@
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;}
 
-/* ===== CUSTOM CURSOR ===== */
-/* Small gold dot cursor */
-.cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
-/* Outer ring that follows cursor with slight delay */
-.cursor-ring{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.6;}
-
 /* ===== GRAFFITI DECORATIVE LAYER ===== */
 /* Background decorative SVG elements for visual interest */
 .graffiti-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:var(--graffiti-op);z-index:0;transition:opacity .4s;}
