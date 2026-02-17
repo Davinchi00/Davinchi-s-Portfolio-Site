@@ -24,6 +24,12 @@
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;}
 
+/* ===== CUSTOM CURSOR ===== */
+/* Small gold dot cursor */
+.cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
+/* Outer ring that follows cursor with slight delay */
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.6;}
+
 /* ===== GRAFFITI DECORATIVE LAYER ===== */
 /* Background decorative SVG elements for visual interest */
 .graffiti-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:var(--graffiti-op);z-index:0;transition:opacity .4s;}
@@ -35,12 +41,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overfl
 #loader.hidden{opacity:0;visibility:hidden;}
 .loader-text{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,5rem);font-weight:300;letter-spacing:.3em;color:var(--gold);animation:pulse 1.5s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-
-/* ===== CUSTOM CURSOR ===== */
-/* Small gold dot cursor */
-.cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
-/* Outer ring that follows cursor with slight delay */
-.cursor-ring{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.6;}
 
 /* ===== NAVIGATION ===== */
 /* Fixed top navigation bar with blur backdrop */
@@ -242,8 +242,23 @@ section{padding:80px 48px;}
 .pm-card.empty-card{border:1px dashed rgba(201,168,76,.28);}
 .pm-card.empty-card .placeholder-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
 
-/* ===== STATIONERY GRID ===== */
-/* 2 large cards + 2 small cards layout */
+.tools-section{padding:64px 48px;background:var(--bg);max-width:1400px;margin:0 auto 24px;border-top:1px solid var(--border);}
+.tools-section .category-title{font-size:1.9rem;}
+.tools-section .category-subtitle{margin-bottom:18px;font-size:.8rem}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:26px;max-width:1200px;margin:18px auto 0;align-items:center;padding-top:6px}
+.tool-card{background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:26px;border-radius:12px;transition:transform .18s,box-shadow .18s;cursor:none;text-align:center;min-height:120px}
+.tool-card img{width:72px;height:72px;object-fit:contain;display:block;opacity:0.98}
+.tool-card span{font-size:.95rem;color:var(--text);letter-spacing:.02em;font-weight:700}
+.tool-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px var(--shadow)}
+
+@media(max-width:900px){
+  .tools-section{padding:36px 20px}
+  .tools-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px}
+  .tool-card{padding:16px;min-height:100px}
+  .tool-card img{width:56px;height:56px}
+}
+
+/* ===== CONTACT SECTION ===== */
 .project-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:4px;}
 /* First two cards span 2 rows each */
 .project-grid .project-card:nth-child(1){grid-column:1;grid-row:span 2;}
@@ -343,16 +358,16 @@ footer{padding:40px 48px;display:flex;align-items:center;justify-content:space-b
 }
 /* Small screens (mobile) */
 @media(max-width:900px){
+  /* Hide custom cursor on mobile and restore default cursor */
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none;}
   /* Reduce padding and hide nav links on mobile */
   nav{padding:18px 20px;}.nav-links{display:none;}
   /* Stack hero grid vertically */
   .hero{padding:100px 20px 60px;}.hero-grid{grid-template-columns:1fr;gap:40px;}
   section{padding:80px 20px;}
   /* Stack about grid vertically */
-  .abHide custom cursor on mobile and restore default cursor */
-  body{cursor:auto;}
-  .cursor,.cursor-ring{display:none;}
-  /* out-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
   /* Reduce grid columns further */
   .logofolio-grid{grid-template-columns:repeat(3,1fr);}
   .social-grid{grid-template-columns:repeat(2,1fr);max-height:454px;}
