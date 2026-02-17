@@ -22,7 +22,10 @@
 /* Reset and base styles */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;-webkit-text-size-adjust:100%;}
+
+/* Make images and media responsive by default */
+img,picture,video,svg{max-width:100%;height:auto;display:block}
 
 /* ===== CUSTOM CURSOR ===== */
 /* Small gold dot cursor */
