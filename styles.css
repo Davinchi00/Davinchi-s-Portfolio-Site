@@ -73,7 +73,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 48px;display:fl
 .hero-bg-image{position:absolute;top:0;right:0;width:55%;height:100%;background-size:cover;background-position:center;opacity:0.09;pointer-events:none;z-index:0;mix-blend-mode:luminosity;transition:opacity .4s;}
 [data-theme="light"] .hero-bg-image{opacity:0.06;mix-blend-mode:multiply;}
 /* Background image overlay */
-.hero::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAH0AYIDAS...');background-size:cover;background-position:center;opacity:0.08;pointer-events:none;z-index:0;mix-blend-mode:luminosity;}
+.hero::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:none;background-size:cover;background-position:center;opacity:0.08;pointer-events:none;z-index:0;mix-blend-mode:luminosity;}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1400px;margin:0 auto;width:100%;position:relative;z-index:1;}
 .hero-label{font-size:.7rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
 /* Decorative line before label */
